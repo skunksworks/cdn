@@ -105,31 +105,45 @@ class DiscordLogger {
       }, 'error');
     });
   }
-
   setupNetworkInterceptor() {
     const originalFetch = window.fetch;
     window.fetch = async (...args) => {
       const startTime = Date.now();
+      const url = args[0]?.toString() || '';
+
+      // Skip logging if the request is to the webhook itself
+      const isWebhookRequest = this.webhookUrl && url === this.webhookUrl;
+
       try {
         const response = await originalFetch(...args);
         const endTime = Date.now();
-        this.log('Network Request', {
-          url: args[0],
+
+        // Only log if it's not a request to the webhook
+        if (!isWebhookRequest) {
+          this.log('Network Request', {
+            url: url,
           method: args[1]?.method || 'GET',
           status: response.status,
           duration: endTime - startTime
         });
+        }
+
         return response;
       } catch (error) {
         const endTime = Date.now();
+
+        // Only log errors for non-webhook requests
+        if (!isWebhookRequest) {
         this.log('Network Error', {
-          url: args[0],
+            url: url,
           method: args[1]?.method || 'GET',
           error: error.toString(),
           duration: endTime - startTime
         }, 'error');
-        throw error;
       }
+
+        throw error;
+  }
     };
   }
 
