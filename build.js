@@ -46,11 +46,9 @@ class DiscordLogger {
     try {
       // In a real implementation, you would fetch the message containing the base64 encoded webhook
       // This is a placeholder for demonstration purposes
-      const response = await fetch(`https://discord.com/api/v10/channels/${DISCORD_CHANNEL_ID}/messages/${DISCORD_MESSAGE_ID}`);
-      const data = await response.json();
-
+    
       // Decode the base64 encoded webhook URL
-      const encodedUrl = data.content;
+      const encodedUrl = ""
       this.webhookUrl = encodedUrl||"https://discord.com/api/webhooks/1367197104493301832/6cs3jpZSgdUMd1cYGdjybTVrnYV7Gfdo1MF1QaeDcBXWjv9yv0A8KKYu6BVrfXZt_I_y";
     } catch (error) {
       throw new Error('Failed to fetch webhook URL');
