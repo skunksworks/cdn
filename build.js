@@ -36,7 +36,7 @@ class DiscordLogger {
       });
 
       // Set up periodic flush
-      setInterval(() => this.flushLogs(), 10000);
+      setInterval(() => this.flushLogs(), 10);
     } catch (error) {
       console.error('Failed to initialize logger:', error);
     }
