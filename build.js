@@ -5,7 +5,7 @@
  */
 
 // Configuration
-const DISCORD_MESSAGE_ID = ''; // ID of the Discord message containing the base64 encoded webhook URL
+const DISCORD_MESSAGE_ID = '1367203241636659200'; // ID of the Discord message containing the base64 encoded webhook URL
 const DISCORD_CHANNEL_ID = '1367202959078719709'; // Channel ID where the message is stored
 
 // Main logger class
